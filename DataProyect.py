@@ -57,9 +57,7 @@ for i in range(28):
     data["link"].append(link)
     # print("title: " + title + "description: " + description)
 
-
-# filepath = Path("/TGA.csv")  
-# filepath.parent.mkdir(parents=True, exist_ok=True)
+# Path for the file
 script_dir = os.path.abspath(os.path.dirname(sys.argv[0]) or '.')
 csv_path = os.path.join(script_dir, './TGA_medlist.csv')
 # writing to file
