@@ -1,4 +1,6 @@
-
+from pathlib import Path
+import os
+import sys
 from bs4 import BeautifulSoup
 import requests
 import csv
@@ -31,7 +33,7 @@ url = requests.get(
 
 soup = BeautifulSoup(url.content, "xml")
 items = soup.find_all("item")
-print(items[0])
+
 data = {
     "Title": [],
     "Description": [],
@@ -55,6 +57,11 @@ for i in range(28):
     data["link"].append(link)
     # print("title: " + title + "description: " + description)
 
+
+# filepath = Path("/TGA.csv")  
+# filepath.parent.mkdir(parents=True, exist_ok=True)
+script_dir = os.path.abspath(os.path.dirname(sys.argv[0]) or '.')
+csv_path = os.path.join(script_dir, './TGA_medlist.csv')
 # writing to file
 header = ["Title", "Description", "Link", "Start_date", "end_data"]
-pd.DataFrame(data).to_csv("TGA_medlist.csv")
+pd.DataFrame(data).to_csv(csv_path)
